@@ -1,0 +1,40 @@
+{
+  "name": "plume-solution/async",
+  "description": "Async utility for PHP, powered by ReactPHP",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "GothShoot",
+      "email": "romuald59161@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4",
+    "react/event-loop": "^1.1",
+    "react/child-process": "^0.6",
+    "react/promise-stream": "^1.2",
+    "react/promise-timer": "^1.5",
+    "react/promise": "^2.7",
+    "react/cache": "^1.0",
+    "ramsey/uuid": "^3.9",
+    "karriere/json-decoder": "^2.2",
+    "react/filesystem": "^0.1.2",
+    "wyrihaximus/react-cache-filesystem": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  },
+  "suggest": {
+    "ext-uv": "For better performance with event loop",
+    "ext-event": "~1.0 similar to ext-uv result",
+    "ext-pcntl": "For support signal handling",
+    "ext-eio": "For better file access"
+  },
+  "autoload": {
+    "psr-4": {
+      "PlumeSolution\\Async\\": "src/"
+    }
+  }
+}
