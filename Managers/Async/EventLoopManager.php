@@ -5,7 +5,13 @@ namespace PlumeSolution\Async\Managers\Async;
 use Exception;
 use React\EventLoop\LoopInterface;
 use React\EventLoop\TimerInterface;
+use React\EventLoop\Factory;
 
+/**
+ * Class EventLoopManager
+ * Manage Event loop simply
+ * @package PlumeSolution\Async\Managers\Async
+ */
 class EventLoopManager
 {
 	/**
@@ -45,7 +51,7 @@ class EventLoopManager
 	{
 		if (!$this->loop)
 		{
-			$this->loop = React\EventLoop\Factory::create();
+			$this->loop = Factory::create();
 			$this->loop->run();
 		}
 		return $this->loop;
@@ -55,6 +61,7 @@ class EventLoopManager
 	 * @param string $name
 	 * @param int|float $time
 	 * @param callable $callback
+     *
 	 * @return TimerInterface
 	 * @throws Exception
 	 */
@@ -74,6 +81,7 @@ class EventLoopManager
 	 * @param string $name
 	 * @param int|float $interval
 	 * @param callable $callback
+     *
 	 * @return TimerInterface
 	 * @throws Exception
 	 */
@@ -89,21 +97,25 @@ class EventLoopManager
 			;
 	}
 
-	/**
-	 * @param string $name
-	 * @throws Exception
-	 */
+    /**
+     * @param string $name
+     *
+     * @return EventLoopManager
+     * @throws Exception
+     */
 	public function removeTimer(string $name)
 	{
 		$this->removeGeneralTimer($name, $this->timers);
-		return;
+		return $this;
 	}
 
-	/**
-	 * @param string $name
-	 * @param array $collection
-	 * @throws Exception
-	 */
+    /**
+     * @param string $name
+     * @param array  $collection
+     *
+     * @return EventLoopManager
+     * @throws Exception
+     */
 	private function removeGeneralTimer(string $name, array $collection)
 	{
 		if (!$this->loop)
@@ -117,15 +129,18 @@ class EventLoopManager
 
 		$this->loop->cancelTimer($collection[$name]);
 		unset($collection[$name]);
+		return $this;
 	}
 
-	/**
-	 * @param string $name
-	 * @throws Exception
-	 */
-	public function removePeriodicTimer(string $name)
-	{
+    /**
+     * @param string $name
+     *
+     * @return EventLoopManager
+     * @throws Exception
+     */
+	public function removePeriodicTimer(string $name): EventLoopManager
+    {
 		$this->removeGeneralTimer($name, $this->periodicTimers);
-		return;
+		return $this;
 	}
 }
