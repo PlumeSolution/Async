@@ -19,8 +19,6 @@
     "react/promise-timer": "^1.5",
     "react/promise": "^2.7",
     "react/cache": "^1.0",
-    "ramsey/uuid": "^3.9",
-    "karriere/json-decoder": "^2.2",
     "react/filesystem": "^0.1.2"
   },
   "require-dev": {
