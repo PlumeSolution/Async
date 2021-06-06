@@ -12,7 +12,7 @@ use React\Filesystem\Node\FileInterface;
 /**
  * Class AsyncFileManager
  * Manage async IO over file
- * @package PlumeSolution\Async\Managers\Data
+ * @todo add lib when she work o php 8
  */
 class AsyncFileManager
 {
