@@ -3,9 +3,9 @@
 namespace PlumeSolution\Async\Managers\Async;
 
 use Exception;
+use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 use React\EventLoop\TimerInterface;
-use React\EventLoop\Factory;
 
 /**
  * Class EventLoopManager
@@ -14,30 +14,28 @@ use React\EventLoop\Factory;
  */
 class EventLoopManager
 {
-	/**
-	 * @var LoopInterface
-	 */
-	private LoopInterface $loop;
+    /**
+     * @var LoopInterface|null
+     */
+    private ?LoopInterface $loop;
+    /**
+     * @var TimerInterface[]
+     */
+    private array $timers = [];
+    /**
+     * @var TimerInterface[]
+     */
+    private array $periodicTimers = [];
 
-	/**
-	 * @var TimerInterface[]
-	 */
-	private array $timers;
-
-	/**
-	 * @var TimerInterface[]
-	 */
-	private array $periodicTimers;
-
-	/**
-	 * @return LoopInterface
-	 * @throws Exception
-	 */
-	public function resetLoop(): LoopInterface
-	{
-		if (!$this->loop)
-		{
-			throw new Exception('No loop runned');
+    /**
+     * @return LoopInterface
+     * @throws Exception
+     */
+    public function resetLoop(): LoopInterface
+    {
+        if (!$this->loop)
+        {
+            throw new Exception('No loop runned');
 		}
 		$this->loop->stop();
 		unset($this->loop);
