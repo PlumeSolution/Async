@@ -17,7 +17,7 @@ class EventLoopManager
     /**
      * @var LoopInterface|null
      */
-    private ?LoopInterface $loop;
+    private ?LoopInterface $loop = null;
     /**
      * @var TimerInterface[]
      */
